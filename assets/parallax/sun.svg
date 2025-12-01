@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205 205">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.9;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: #fcece3;
+      }
+
+      .cls-2 {
+        opacity: 0.1;
+      }
+
+      .cls-3 {
+        opacity: 0.2;
+      }
+    </style>
+  </defs>
+  <title>sun</title>
+  <g id="Calque_2" data-name="Calque 2">
+    <g id="Sun" class="cls-1">
+      <circle class="cls-2" cx="102.5" cy="102.5" r="102.5"/>
+      <circle class="cls-3" cx="102.5" cy="102.5" r="75.5"/>
+      <circle class="cls-4" cx="102.5" cy="102.5" r="53.5"/>
+    </g>
+  </g>
+</svg>

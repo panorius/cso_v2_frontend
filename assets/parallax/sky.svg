@@ -1,0 +1,20 @@
+<svg id="Sky" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Dégradé_sans_nom_63);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_63" data-name="Dégradé sans nom 63" x1="960" y1="1080" x2="960" y2="-3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#be87c6"/>
+      <stop offset="0.33" stop-color="#bc85c4"/>
+      <stop offset="0.51" stop-color="#b480be"/>
+      <stop offset="0.66" stop-color="#a676b5"/>
+      <stop offset="0.79" stop-color="#9268a6"/>
+      <stop offset="0.9" stop-color="#795694"/>
+      <stop offset="1" stop-color="#5c417f"/>
+    </linearGradient>
+  </defs>
+  <title>sky</title>
+  <rect class="cls-1" y="-3" width="1920" height="1083"/>
+</svg>
