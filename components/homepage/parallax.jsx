@@ -13,9 +13,9 @@ import sun from "@/assets/parallax/sun.svg";
 import trees from "@/assets/parallax/trees.svg";
 import LoginPage from "@/components/homepage/login.jsx";
 
-import { Textarea } from "@heroui/react";
-import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
+import {Button, ButtonGroup} from "@heroui/button";
+import {Textarea, Input} from "@heroui/input";
+import { ClassicInput } from "@/components/ui/inputs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -161,7 +161,7 @@ export default function Parallax() {
             </div>
 
             {/* Front - Premier plan */}
-            <div ref={frontRef} className="absolute z-10 inset-0 w-full h-full">
+            <div ref={frontRef} className="absolute inset-0 z-10 w-full h-full">
                 <Image src={front} alt="Front" fill className="object-cover" />
             </div>
 
@@ -177,23 +177,21 @@ export default function Parallax() {
                         priority
                     />
                     <div className="p-14">
-                        <h1 className="mb-4 text-4xl font-bold text-orange-cso uppercase">
+                        <h1 className="mb-4 text-4xl font-bold uppercase text-orange-cso">
                             New Generation of Role Playing Game
                         </h1>
                     </div>
                     {/* Login Block */}
                     <LoginPage />
-                    <div className="flex flex-wrap gap-4 items-center">
+                    <div className="flex flex-wrap items-center gap-4">
                         <Button color="default">Default</Button>
-                        <Button color="primary">Primary</Button>
+                        <Button isDisabled  color="primary">Primary</Button>
                         <Button color="secondary">Secondary</Button>
                         <Button color="success">Success</Button>
                         <Button color="warning">Warning</Button>
                         <Button color="danger">Danger</Button>
                     </div>
-                    <Textarea
-                        disableAnimation
-                        disableAutosize
+                    {/* <Textarea
                         classNames={{
                             base: "max-w-xs",
                             input: "resize-y min-h-[40px]",
@@ -201,12 +199,15 @@ export default function Parallax() {
                         label="Description"
                         placeholder="Enter your description"
                         variant="bordered"
-                    />
+                    /> */}
                     <Input
-                        label="Email"
-                        placeholder="your@email.com"
-                        type="email"
-                    />
+        isClearable
+        variant="faded"
+        label="Search"
+        placeholder="Type to search..."
+        radius="lg"
+      />
+      <ClassicInput variant="faded" label="Search" placeholder="Type to search..." />
                 </div>
             </div>
         </div>

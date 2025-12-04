@@ -1,0 +1,1 @@
+export { ClassicTabs } from "./ClassicTabs";

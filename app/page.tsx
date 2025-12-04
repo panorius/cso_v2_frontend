@@ -1,43 +1,62 @@
-"use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { Link } from "@heroui/link";
+import { Snippet } from "@heroui/snippet";
+import { Code } from "@heroui/code";
+import { button as buttonStyles } from "@heroui/theme";
+
+import { siteConfig } from "@/config/site";
+import { title, subtitle } from "@/components/primitives";
+import { GithubIcon } from "@/components/icons";
+
 import Parallax from "@/components/homepage/parallax";
 
 export default function Home() {
-    const [health, setHealth] = useState<string>("…");
-    useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_API_URL + "/users")
-            .then((r) => r.json())
-            .then((data) => {
-                setHealth("ok");
-                console.log(data);
-            })
-            .catch((e) => setHealth(e.message));
-    }, []);
-    return (
-        <main className="min-h-screen bg-purple-cso-bg">
-            {/* Parallax Hero Section */}
-            <Parallax />
+  return (
+    <>
+    <section className="flex flex-col items-center justify-center gap-4">
+      <Parallax />
+      {/* <div className="inline-block max-w-xl text-center justify-center">
+        <span className={title()}>Make&nbsp;</span>
+        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
+        <br />
+        <span className={title()}>
+          websites regardless of your design experience.
+        </span>
+        <div className={subtitle({ class: "mt-4" })}>
+          Beautiful, fast and modern React UI library.
+        </div>
+      </div>
 
-            {/* Contenu après le parallax */}
-            {/* <section className="flex flex-col items-center p-24">
-                <Image
-                    src="/images/logos/cso.svg"
-                    alt="CSO Logo"
-                    width={274}
-                    height={110}
-                    priority
-                />
-                <div className="p-14">
-                    <h1 className="mb-4 text-4xl font-bold text-orange-cso uppercase">
-                        New Generation of Role Playing Game
-                    </h1>
-                </div>
-                <div className="z-10 items-center justify-between w-full max-w-5xl font-mono text-sm lg:flex">
-                    API Health: {health}
-                </div>
-            </section> */}
-            <section className="h-[1500px]"></section>
-        </main>
-    );
+      <div className="flex gap-3">
+        <Link
+          isExternal
+          className={buttonStyles({
+            color: "primary",
+            radius: "full",
+            variant: "shadow",
+          })}
+          href={siteConfig.links.docs}
+        >
+          Documentation
+        </Link>
+        <Link
+          isExternal
+          className={buttonStyles({ variant: "bordered", radius: "full" })}
+          href={siteConfig.links.github}
+        >
+          <GithubIcon size={20} />
+          GitHub
+        </Link>
+      </div>
+
+      <div className="mt-8">
+        <Snippet hideCopyButton hideSymbol variant="bordered">
+          <span>
+            Get started by editing <Code color="primary">app/page.tsx</Code>
+          </span>
+        </Snippet>
+      </div> */}
+    </section>
+    <section className="h-[1200px]"></section>
+    </>
+  );
 }
