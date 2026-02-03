@@ -16,7 +16,7 @@
 //         'orange-cso': '#ffa500',
 //         'purple-cso-bg': '#2e112d',
 //         'purple-cso-main': '#270d26',
-//         'grey-cso-light': 'var(--grey-cso-light)',
+//         'grey-cso-light': 'var(--grey-light)',
 //       },
 //       borderRadius: {
 //         'cso': '10px',

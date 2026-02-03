@@ -4,18 +4,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-import city from "@/assets/parallax/city.svg";
-import front from "@/assets/parallax/front.svg";
-import lake from "@/assets/parallax/lake.svg";
-import montains from "@/assets/parallax/montains.svg";
-import sky from "@/assets/parallax/sky.svg";
-import sun from "@/assets/parallax/sun.svg";
-import trees from "@/assets/parallax/trees.svg";
+import city from "@/assets/images/parallax/city.svg";
+import front from "@/assets/images/parallax/front.svg";
+import lake from "@/assets/images/parallax/lake.svg";
+import montains from "@/assets/images/parallax/montains.svg";
+import sky from "@/assets/images/parallax/sky.svg";
+import sun from "@/assets/images/parallax/sun.svg";
+import trees from "@/assets/images/parallax/trees.svg";
 import LoginPage from "@/components/homepage/login.jsx";
-
-import {Button, ButtonGroup} from "@heroui/button";
-import {Textarea, Input} from "@heroui/input";
-import { ClassicInput } from "@/components/ui/inputs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,67 +27,86 @@ export default function Parallax() {
     const frontRef = useRef(null);
 
     useEffect(() => {
+        let ticking = false;
+
         const handleScroll = () => {
-            const value = window.scrollY;
-            const maxScroll = window.innerHeight;
-            const opacity = Math.min((value / maxScroll) * 0.4, 0.7);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const value = window.scrollY;
+                    const maxScroll = window.innerHeight;
+                    const scrollPercent = value / maxScroll;
 
-            // Assombrir progressivement
-            if (overlayRef.current) {
-                overlayRef.current.style.opacity = opacity;
-            }
+                    // Assombrir progressivement
+                    if (overlayRef.current) {
+                        overlayRef.current.style.opacity = Math.min(
+                            scrollPercent * 0.7,
+                            0.7
+                        );
+                    }
 
-            if (skyRef.current) {
-                skyRef.current.style.top = -value * 0.5 + "px";
-            }
-            // Le soleil est géré par GSAP, on ne touche pas au top ici
-            if (cityRef.current) {
-                cityRef.current.style.top = value * 1 + "px";
-            }
-            if (lakeRef.current) {
-                lakeRef.current.style.top = value * 0.9 + "px";
-            }
-            if (montainsRef.current) {
-                montainsRef.current.style.top = value * 0.6 + "px";
-            }
-            if (treesRef.current) {
-                treesRef.current.style.top = value * 0.4 + "px";
-            }
-            if (frontRef.current) {
-                frontRef.current.style.top = value * 0.2 + "px";
+                    // Sky - arrête après 20% du scroll
+                    if (skyRef.current) {
+                        const skyScroll = Math.min(scrollPercent, 0.2);
+                        skyRef.current.style.transform = `translateY(${-skyScroll * maxScroll * 0.5}px)`;
+                    }
+
+                    // City - Défilement rapide
+                    if (cityRef.current) {
+                        cityRef.current.style.transform = `translateY(${value * 0.8}px)`;
+                    }
+
+                    // Lake - Légèrement moins rapide
+                    if (lakeRef.current) {
+                        lakeRef.current.style.transform = `translateY(${value * 0.7}px)`;
+                    }
+
+                    // Mountains - Défilement moyen
+                    if (montainsRef.current) {
+                        montainsRef.current.style.transform = `translateY(${value * 0.5}px)`;
+                    }
+
+                    // Trees - Défilement plus lent
+                    if (treesRef.current) {
+                        treesRef.current.style.transform = `translateY(${value * 0.3}px)`;
+                    }
+
+                    // Front - Défilement très lent
+                    if (frontRef.current) {
+                        frontRef.current.style.transform = `translateY(${value * 0.15}px)`;
+                    }
+
+                    ticking = false;
+                });
+
+                ticking = true;
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
 
-        // Animation GSAP pour le soleil (parabole de gauche à droite)
+        // Animation GSAP pour le soleil (parabole)
         if (sunRef.current) {
             gsap.timeline({
                 scrollTrigger: {
                     trigger: parallaxRef.current,
                     start: "top top",
                     end: "bottom top",
-                    scrub: true,
+                    scrub: 0.5,
                 },
-            })
-                .fromTo(
-                    sunRef.current,
-                    {
-                        left: "50%",
-                        top: "0%",
-                    },
-                    {
-                        left: "0%",
-                        top: "60%",
-                        ease: "power1.out",
-                    },
-                    0
-                )
-                .to(sunRef.current, {
-                    left: "0%",
-                    top: "60%",
+            }).fromTo(
+                sunRef.current,
+                {
+                    left: "50%",
+                    top: "5%",
+                    x: "-50%",
+                },
+                {
+                    left: "5%",
+                    top: "65%",
+                    x: "0%",
                     ease: "power1.inOut",
-                });
+                }
+            );
         }
 
         return () => {
@@ -103,113 +118,74 @@ export default function Parallax() {
     return (
         <div
             ref={parallaxRef}
-            className="relative w-full h-screen overflow-hidden bg-[#72518f]"
+            className="relative w-full max-w-[1920px] h-[800px] overflow-hidden bg-[unset]"
         >
-            {/* Sky - Fond qui remonte (inverse) */}
+            {/* Sky - Dégradé bleu vers violet */}
             <div
                 ref={skyRef}
-                className="absolute inset-0 w-full h-full rotate-180"
-            >
-                <Image
-                    src={sky}
-                    alt="Sky"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-            </div>
+                className="absolute inset-0 w-full h-full bg-gradient-to-b from-[#a172b1] to-[#5d417f]"
+            ></div>
 
             {/* Overlay d'assombrissement progressif */}
             <div
                 ref={overlayRef}
-                className="absolute inset-0 w-full h-screen bg-black pointer-events-none z-5"
+                className="absolute inset-0 w-full h-full bg-black pointer-events-none z-5"
                 style={{ opacity: 0 }}
             />
 
             {/* Sun - Petit soleil qui se déplace en parabole */}
             <div
                 ref={sunRef}
-                className="absolute w-32 h-32"
+                className="absolute w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32"
                 style={{ left: "10%", top: "60%" }}
             >
                 <Image src={sun} alt="Sun" fill className="object-contain" />
             </div>
 
             {/* City */}
-            <div ref={cityRef} className="absolute inset-0 w-full h-full">
-                <Image src={city} alt="City" fill className="object-cover" />
-            </div>
+            <Image
+                ref={cityRef}
+                src={city}
+                alt="City"
+                fill
+                className="object-cover absolute w-[1920px] h-full right-[calc(100vh - 1920px)] left-[calc(100vh - 1920px)]"
+            />
 
             {/* Lake */}
-            <div ref={lakeRef} className="absolute inset-0 w-full h-full">
-                <Image src={lake} alt="Lake" fill className="object-cover" />
-            </div>
+            <Image
+                ref={lakeRef}
+                src={lake}
+                alt="Lake"
+                fill
+                className="object-cover absolute w-[1920px] h-full right-[calc(100vh - 1920px)] left-[calc(100vh - 1920px)]"
+            />
 
             {/* Mountains */}
-            <div ref={montainsRef} className="absolute inset-0 w-full h-full">
-                <Image
-                    src={montains}
-                    alt="Mountains"
-                    fill
-                    className="object-cover"
-                />
-            </div>
+            <Image
+                ref={montainsRef}
+                src={montains}
+                alt="Mountains"
+                fill
+                className="object-cover absolute w-[1920px] h-full right-[calc(100vh - 1920px)] left-[calc(100vh - 1920px)]"
+            />
 
             {/* Trees */}
-            <div ref={treesRef} className="absolute inset-0 w-full h-full">
-                <Image src={trees} alt="Trees" fill className="object-cover" />
-            </div>
+            <Image
+                ref={treesRef}
+                src={trees}
+                alt="Trees"
+                fill
+                className="object-cover absolute w-[1920px] h-full right-[calc(100vh - 1920px)] left-[calc(100vh - 1920px)]"
+            />
 
             {/* Front - Premier plan */}
-            <div ref={frontRef} className="absolute inset-0 z-10 w-full h-full">
-                <Image src={front} alt="Front" fill className="object-cover" />
-            </div>
-
-            {/* Contenu par-dessus le parallax */}
-            <div className="relative z-10 flex items-center justify-center h-full">
-                <div className="text-center text-white">
-                    <Image
-                        className="m-auto"
-                        src="/images/logos/cso.svg"
-                        alt="CSO Logo"
-                        width={274}
-                        height={110}
-                        priority
-                    />
-                    <div className="p-14">
-                        <h1 className="mb-4 text-4xl font-bold uppercase text-orange-cso">
-                            New Generation of Role Playing Game
-                        </h1>
-                    </div>
-                    {/* Login Block */}
-                    <LoginPage />
-                    <div className="flex flex-wrap items-center gap-4">
-                        <Button color="default">Default</Button>
-                        <Button isDisabled  color="primary">Primary</Button>
-                        <Button color="secondary">Secondary</Button>
-                        <Button color="success">Success</Button>
-                        <Button color="warning">Warning</Button>
-                        <Button color="danger">Danger</Button>
-                    </div>
-                    {/* <Textarea
-                        classNames={{
-                            base: "max-w-xs",
-                            input: "resize-y min-h-[40px]",
-                        }}
-                        label="Description"
-                        placeholder="Enter your description"
-                        variant="bordered"
-                    /> */}
-                    <Input
-        isClearable
-        variant="faded"
-        label="Search"
-        placeholder="Type to search..."
-        radius="lg"
-      />
-      <ClassicInput variant="faded" label="Search" placeholder="Type to search..." />
-                </div>
-            </div>
+            <Image
+                ref={frontRef}
+                src={front}
+                alt="Front"
+                fill
+                className="object-cover absolute z-10 w-[1920px] h-full right-[calc(100vh - 1920px)] left-[calc(100vh - 1920px)]"
+            />
         </div>
     );
 }

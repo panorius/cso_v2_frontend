@@ -1,21 +1,42 @@
 @import "tailwindcss";
+@import "./titles.css";
+@import "./icons-cso.css";
 @plugin './hero.ts';
 /* Note: You may need to change the path to fit your project structure */
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-    --color-orange-cso: #ffa500;
-    --color-purple-cso-bg: #2e112d;
-    --color-purple-cso-main: #270d26;
-    --color-grey-cso-light: #9e9e9e;
-    --color-grey-cso-darklight: #626262;
-    --color-grey-cso-dark: #3c3c3c;
+    --color-orange: #ffaf3a;
+    --color-purple-bg: #2e112d;
+    --color-purple-main: #270d26;
+    --color-grey-light: #9e9e9e;
+    --color-grey-darklight: #626262;
+    --color-grey-dark: #3c3c3c;
+    --color-grey-darken: #262626;
+    --color-input-border: #424242;
+    --color-input: #0000004f;
 
-    --color-cso-input-border: #424242;
-    --color-cso-input: #0000004f;
+    /* brands */
+    --color-google: #c42620;
+    --color-facebook: #3b5998;
+    --color-twitter: #1c1c1c;
+    --color-discord: #7289da;
 
-    --radius-cso: 10px;
+    --radius: 10px;
 
-    --heroui-radius-large: var(--radius-cso);
+    --heroui-radius-large: var(--radius);
+    --heroui-danger: #f44336 !important;
+
+    --font-weight-button: 900;
+}
+
+* {
+    scroll-behavior: smooth;
+    smooth-scroll: always;
+}
+
+html,
+body {
+    background-color: #2e112d; /* purple-bg */
 }
