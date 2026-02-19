@@ -1,17 +1,21 @@
 export interface SkillModuleValue {
+    id: string;
     label: string;
-    defaultValue: string;
+    defaultValue: string | number;
 }
 
 export interface BonusMalusConfig {
+    id: string;
     name: string;
-    operator: '+' | '-' | '*' | '/';
-    value: number;
+    operator: "+" | "-" | "*" | "/";
+    value: string | number;
 }
 
-export interface SkillModuleConfig  {
+export interface SkillModuleConfig {
+    id: string;
+    type: "skill";
+    order: number;
     values: SkillModuleValue[];
-    rollDiceFormula?: string;
+    rollDice?: string;
     listBonusMalus?: BonusMalusConfig[];
-    required?: boolean;
 }

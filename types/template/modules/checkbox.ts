@@ -1,5 +1,7 @@
 export interface CheckboxModuleConfig {
-    label?: string;
+    id: string;
+    type: "checkbox";
+    order: number;
+    title: string;
     defaultValue?: string;
-    required?: boolean;
 }

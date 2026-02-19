@@ -1,7 +1,9 @@
 export interface NumberModuleConfig {
-    label?: string;
+    id: string;
+    type: "number";
+    order: number;
+    title: string;
     defaultValue?: number;
     unit?: string;
-    isVisible?: boolean;
-    required?: boolean;
+    hasLabelVisible: boolean;
 }

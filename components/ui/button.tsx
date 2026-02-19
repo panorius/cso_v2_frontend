@@ -113,9 +113,18 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
 
     return (
         <>
-            {bgColor && (
-                <style>
-                    {`
+            <HeroButton
+                {...props}
+                isIconOnly={isIconOnly}
+                variant="bordered"
+                className={`h-15 min-h-10 max-w-fit ${bgColor ? buttonClass : ""} ${className}`}
+                style={getButtonStyles()}
+                radius="lg"
+            >
+                {content}
+                {bgColor && (
+                    <style>
+                        {`
                         .${buttonClass} {
                             transition: transform 0.15s ease, box-shadow 0.15s ease;
                         }
@@ -128,17 +137,8 @@ export const StyledButton: React.FC<StyledButtonProps> = ({
                             box-shadow: 0 0px 0 0 ${darkerColor} !important;
                         }
                     `}
-                </style>
-            )}
-            <HeroButton
-                {...props}
-                isIconOnly={isIconOnly}
-                variant="bordered"
-                className={`h-15 min-h-10 max-w-fit ${bgColor ? buttonClass : ""} ${className}`}
-                style={getButtonStyles()}
-                radius="lg"
-            >
-                {content}
+                    </style>
+                )}
             </HeroButton>
         </>
     );

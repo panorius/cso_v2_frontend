@@ -1,8 +1,10 @@
 export interface ListModuleConfig {
-    label?: string;
+    id: string;
+    type: "list";
+    order: number;
+    title: string;
     values: string[];
     defaultValue?: string[] | string;
-    isMultiple?: boolean;
-    isVisible?: boolean;
-    required?: boolean;
+    isMultiple: boolean;
+    hasLabelVisible: boolean;
 }

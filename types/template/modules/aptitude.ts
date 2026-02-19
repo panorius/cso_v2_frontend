@@ -1,12 +1,15 @@
 export interface AptitudeValue {
+    id: string;
     name: string;
     description: string;
 }
 
 export interface AptitudeModuleConfig {
-    title?: string;
+    id: string;
+    type: "aptitude";
+    order: number;
+    title: string;
     labelName: string;
     labelDescription: string;
     values?: AptitudeValue[];
-    required?: boolean;
 }

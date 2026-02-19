@@ -1,6 +1,7 @@
 export interface TextareaModuleConfig {
-    label?: string;
+    id: string;
+    type: "textarea";
+    order: number;
+    title: string;
     defaultValue?: string;
-    isReadOnly?: boolean;
-    required?: boolean;
 }

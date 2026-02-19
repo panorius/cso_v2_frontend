@@ -3,11 +3,13 @@ export interface TableRow {
 }
 
 export interface TableModuleConfig {
+    id: string;
+    type: "table";
+    order: number;
     title?: string;
-    rollDiceFormula?: string;
+    rollDice?: string;
     headers: string[];
     rows: TableRow[];
     hasSumRow?: boolean;
     hasCheckboxColumn?: boolean;
-    required?: boolean;
 }

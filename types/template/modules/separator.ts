@@ -1,9 +1,10 @@
 export interface SeparatorModuleConfig {
+    id: string;
+    order: number;
+    type: "separator";
     label?: string;
-    style?: "line" | "space";
-    thickness?: number;
-    color?: string;
-    marginTop?: number;
-    marginBottom?: number;
-    required?: boolean;
+    icons?: {
+        left?: string;
+        right?: string;
+    };
 }

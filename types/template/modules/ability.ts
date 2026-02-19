@@ -1,9 +1,17 @@
+export interface AptitudeValue {
+    id: string;
+    name: string;
+    defaultValues: number;
+}
+
 export interface AbilityModuleConfig {
-    label?: string;
-    values: string[];
-    rollDiceFormula?: string;
-    modFormula?: string;
+    id: string;
+    type: "ability";
+    title?: string;
+    values: AptitudeValue[];
+    order: number;
+    rolldice?: string;
+    modificator?: string;
     hasBonus?: boolean;
-    options?: object;
-    required?: boolean;
+    display: "classic" | "dnd" | "cthulhu";
 }

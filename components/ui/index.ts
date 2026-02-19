@@ -7,3 +7,5 @@ export { Checkbox } from './checkbox';
 export { Badge } from './badge';
 export { Tabs, TabsTrigger, TabsContent, TabsList } from './tabs';
 export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from './select';
+export { StyledTabs } from './StyledTabs';
+export type { StyledTabsProps, TabItem, BorderRadius } from './StyledTabs';

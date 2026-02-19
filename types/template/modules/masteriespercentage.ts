@@ -5,8 +5,10 @@ export interface MasteriesPercentageValue {
 }
 
 export interface MasteriesPercentageModuleConfig {
+    id: string;
+    order: number;
+    type: "masteriespercentage";
     label?: string;
     values: MasteriesPercentageValue[];
-    rollDiceFormula?: string;
-    required?: boolean;
+    rollDice?: string;
 }

@@ -1,6 +1,8 @@
 export interface PointModuleConfig {
-    label?: string;
-    value: number;
+    id: string;
+    type: "point";
+    order: number;
+    title: string;
     defaultValue?: string;
-    required?: boolean;
+    maxDefaultValue?: string;
 }

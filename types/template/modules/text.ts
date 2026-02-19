@@ -1,6 +1,8 @@
 export interface TextModuleConfig {
-    label?: string;
+    id: string;
+    type: "text";
+    order: number;
+    title: string;
     defaultValue?: string;
-    isVisible?: boolean;
-    required?: boolean;
+    hasLabelVisible: boolean;
 }

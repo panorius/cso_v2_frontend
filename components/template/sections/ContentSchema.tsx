@@ -81,7 +81,7 @@ export default function contentSchema({ text }: { text: string }) {
             >
                 <div className="self-stretch h-12 px-5 py-3 bg-stone-500 outline-[1.25px] outline-offset-[-1.25px] outline-stone-500 flex flex-col justify-center items-center">
                     <div className="relative w-6 h-6 overflow-hidden">
-                        <div className="w-5 h-4 left-[1.88px] top-[3.13px] absolute bg-white" />
+                        <div className="w-5 h-4 left-[1.88px] top-[3.13px] absolute bg-grey-darken" />
                     </div>
                 </div>
             </div>

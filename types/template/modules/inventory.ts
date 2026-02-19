@@ -1,31 +1,42 @@
-export interface CategoryValue {
-    label: string;
-}
+import { TextModuleConfig } from "./text";
+import { CheckboxModuleConfig } from "./checkbox";
+import { NumberModuleConfig } from "./number";
+import { ListModuleConfig } from "./list";
+import { PointModuleConfig } from "./point";
+
+export type CategoryValue =
+    | TextModuleConfig
+    | CheckboxModuleConfig
+    | NumberModuleConfig
+    | ListModuleConfig
+    | PointModuleConfig;
 
 export interface CategoryItem {
+    id: string;
     icon: string;
-    label: string;
+    title: string;
     values: CategoryValue[];
 }
 
 export interface Currency {
-    label: string;
+    id: string;
+    title: string;
     referencyValue: number;
 }
 
-
 export interface InventoryModuleConfig {
-    labelName?: string;
+    labels: {
+        name: string;
+        rarity: string;
+        quantity: string;
+        description: string;
+        weight: string;
+    };
     hasRarity?: boolean;
-    labelRarity?: string;
-    labelQuantity?: string;
-    labelDescription?: string;
     hasWeight?: boolean;
-    labelWeight?: string;
     categories?: CategoryItem[];
     currencies?: {
         mainReferencyLabel: string;
         others: Currency[];
-    }
-    required?: boolean;
+    };
 }
